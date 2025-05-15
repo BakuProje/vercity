@@ -1,0 +1,398 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   VERCITYBETA
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
+ <link rel="stylesheet" href="vercity.css">
+ </head>
+ <body class="bg-[#121217] text-[#d1d5db] min-h-screen flex justify-center px-4" id="page-body">
+  <video id="video-background" autoplay muted loop playsinline>
+    <source src="img/video1.mp4" type="video/mp4">
+  </video>
+  <div class="snowfall-container" id="snowfall"></div>
+  <div class="theme-toggle">
+    <button id="theme-toggle" class="bg-[#121926] border border-[#1e293b] rounded-full w-10 h-10 flex items-center justify-center text-yellow-400 hover:bg-[#1a2432] transition-colors">
+      <i class="fas fa-sun" id="theme-icon"></i>
+    </button>
+  </div>
+  <div class="sound-toggle">
+    <button id="sound-toggle" class="bg-[#121926] border border-[#1e293b] rounded-full w-10 h-10 flex items-center justify-center text-white hover:bg-[#1a2432] transition-colors">
+      <i class="fas fa-volume-mute" id="sound-icon"></i>
+    </button>
+  </div>
+  
+  <main class="max-w-md w-full pt-10">
+   <header class="text-center">
+    <div class="mb-4 flex justify-center">
+      <img src="img/Vercity.png" alt="Vercity Logo" class="h-28 glow rounded-lg">
+    </div>
+    <h1 class="font-extrabold text-2xl leading-none tracking-wide">
+     <span class="rgb-text">VERCITY</span>
+     <span class="text-white font-extrabold rgb-text-fast">
+      BETA
+     </span>
+    </h1>
+    <div class="flex justify-center items-center space-x-1 mt-1 text-[10px] font-semibold text-[#6b4f3a]">
+     <i class="fas fa-star text-yellow-400">
+     </i>
+     <i class="fas fa-star text-yellow-400">
+     </i>
+     <i class="fas fa-star text-yellow-400">
+     </i>
+     <i class="fas fa-star text-yellow-400">
+     </i>
+     <i class="fas fa-star text-yellow-400">
+     </i>
+     <span class="text-gray-400 font-normal ml-1">
+      999 Reviews - Rating: 10.0
+     </span>
+    </div>
+    <div class="mt-4 space-y-3">
+     <button id="download-host" class="btn-primary text-[10px] font-semibold px-5 py-2.5 rounded-lg flex items-center justify-center mx-auto transition-shadow shadow-md hover:shadow-lg text-white" type="button">
+      <i class="fas fa-download mr-2 text-[12px]">
+      </i>
+      Download Host (VHost)
+     </button>
+     <button id="copy-powertunnel" class="bg-gradient-to-r from-blue-700 to-blue-500 hover:from-blue-600 hover:to-blue-400 text-[10px] font-semibold px-5 py-2.5 rounded-lg flex items-center justify-center mx-auto transition-shadow shadow-md hover:shadow-lg relative text-white" type="button">
+      <i class="fas fa-rocket mr-2 text-[12px]">
+      </i>
+      <span class="copy-text">
+       Copy Powertunnel
+      </span>
+      <i class="fas fa-check absolute right-3 top-1/2 -translate-y-1/2 text-green-400 hidden" id="powertunnel-check"></i>
+     </button>
+     <button id="copy-ios" class="bg-gradient-to-r from-blue-700 to-blue-500 hover:from-blue-600 hover:to-blue-400 text-[10px] font-semibold px-5 py-2.5 rounded-lg flex items-center justify-center mx-auto transition-shadow shadow-md hover:shadow-lg relative text-white" type="button">
+      <i class="fab fa-apple mr-2 text-[12px]">
+      </i>
+      <span class="copy-text">
+       Copy IOS Host (Surge 5)
+      </span>
+      <i class="fas fa-check absolute right-3 top-1/2 -translate-y-1/2 text-green-400 hidden" id="ios-check"></i>
+     </button>
+     <div class="dropdown relative w-full">
+       <button id="download-host-apk" class="bg-gradient-to-r from-blue-700 to-blue-500 hover:from-blue-600 hover:to-blue-400 text-[10px] font-semibold px-5 py-2.5 rounded-lg flex items-center justify-center mx-auto transition-shadow shadow-md hover:shadow-lg text-white" type="button">
+         <i class="fas fa-download mr-2 text-[12px]"></i>
+         <span>Download Host APK</span>
+       </button>
+     </div>
+    </div>
+    <div class="mt-5 mx-auto w-fit card border border-[#38bdf8] rounded-lg text-[9px] font-mono leading-[1.3] text-[#d1d5db] px-4 py-3" style="line-height: 1.3">
+     206.189.91.118 growtopia1.com
+     <br/>
+     206.189.91.118 growtopia2.com
+     <br/>
+     206.189.91.118 www.growtopia1.com
+     <button class="inline-block ml-1 text-[9px] text-[#38bdf8] bg-transparent border-none p-0 cursor-pointer" id="copy-ip-list">
+      <i class="fas fa-copy"></i>
+     </button>
+     <br/>
+     206.189.91.118 www.growtopia2.com
+     <br/>
+     206.189.91.118 RVLnd.here
+    </div>
+   </header>
+   <section class="mt-6 max-w-md mx-auto">
+    <h3 class="font-semibold text-[15px] mb-3 text-[#38bdf8] flex items-center">
+     <i class="fas fa-gamepad mr-2"></i>Cara Bermain
+    </h3>
+    <div class="card p-4">
+     <nav class="flex space-x-2 text-[8px] font-semibold mb-3 select-none">
+      <button aria-selected="true" class="flex items-center space-x-1 rounded px-2 py-[2px] tab-active" data-tab="android" type="button">
+       <i class="fab fa-android text-[8px]">
+       </i>
+       <span>
+        Android
+       </span>
+      </button>
+      <button aria-selected="false" class="flex items-center space-x-1 rounded px-2 py-[2px] tab-inactive" data-tab="ios" type="button">
+       <i class="fab fa-apple text-[8px]">
+       </i>
+       <span>
+        iOS
+       </span>
+      </button>
+      <button aria-selected="false" class="flex items-center space-x-1 rounded px-2 py-[2px] tab-inactive" data-tab="mac" type="button">
+       <i class="fab fa-apple text-[8px]">
+       </i>
+       <span>
+        MAC
+       </span>
+      </button>
+      <button aria-selected="false" class="flex items-center space-x-1 rounded px-2 py-[2px] tab-inactive" data-tab="windows" type="button">
+       <i class="fab fa-windows text-[8px]">
+       </i>
+       <span>
+        WINDOWS
+       </span>
+      </button>
+     </nav>
+     <div class="bg-[#1a1a1f] rounded-md p-3 text-[9px] font-mono leading-[1.1] text-[#d1d5db] min-h-[120px] tab-content-container" id="tab-content" style="line-height: 1.1">
+     </div>
+    </div>
+   </section>
+   <section class="mt-5 max-w-md mx-auto">
+    <div class="flex justify-center items-center mb-5 space-x-4">
+      <button id="toggle-comments" class="btn-primary text-[11px] font-semibold px-5 py-2.5 rounded-lg flex items-center justify-center transition-shadow shadow-md hover:shadow-lg text-white glow" type="button">
+        <i class="fas fa-comment-dots mr-2 text-[13px]"></i>
+        <span>Lihat Komentar</span>
+      </button>
+      <button id="register-button" class="bg-gradient-to-r from-green-600 to-green-400 hover:from-green-500 hover:to-green-300 text-[11px] font-semibold px-5 py-2.5 rounded-lg flex items-center justify-center transition-shadow shadow-md hover:shadow-lg text-white glow" type="button">
+        <i class="fas fa-user-plus mr-2 text-[13px]"></i>
+        <span>Komunitas Vercity</span>
+      </button>
+    </div>
+    <div id="comments-popup" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden">
+      <div class="bg-[#121926] border border-[#1e293b] rounded-lg w-full max-w-md max-h-[90vh] overflow-auto">
+        <div class="flex justify-between items-center border-b border-[#1e293b] p-3">
+          <div class="text-[#38bdf8] font-semibold flex items-center">
+            <i class="fas fa-comments mr-2"></i> Komentar
+          </div>
+          <button id="close-comments" class="text-gray-400 hover:text-white">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        
+        <div class="p-4">
+          <p class="text-[9px] text-center mb-4 text-gray-400 hidden" id="no-comments">
+            Tidak Ada Komentar
+          </p>
+          <div id="comments-container" class="space-y-4 mb-4">
+            <div class="bg-[#0f1723] rounded-lg p-4 border border-[#1e293b]">
+              <div class="flex items-start">
+                <div class="mr-3">
+                  <img src="img/avatar.png" alt="User avatar" class="w-10 h-10 rounded-full">
+                </div>
+                <div class="flex-1">
+                  <div class="flex justify-between items-center mb-2">
+                    <div class="font-semibold text-[#38bdf8]">bakucan</div>
+                    <div class="text-[10px] text-gray-400">May 15, 2025, 01:34 AM</div>
+                  </div>
+                  <div class="text-[11px] text-gray-300">
+                    hai
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="bg-[#0f1723] rounded-lg p-4 border border-[#1e293b]">
+              <div class="flex items-start">
+                <div class="mr-3">
+                  <img src="img/avatar.png" alt="User avatar" class="w-10 h-10 rounded-full">
+                </div>
+                <div class="flex-1">
+                  <div class="flex justify-between items-center mb-2">
+                    <div class="font-semibold text-[#38bdf8]">kuzuroken</div>
+                    <div class="text-[10px] text-gray-400">May 15, 2025, 01:25 AM</div>
+                  </div>
+                  <div class="text-[11px] text-gray-300">
+                    hai
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+          <form class="space-y-3" id="comment-form">
+            <div>
+              <label class="block text-[8px] font-semibold mb-1 text-gray-400" for="username">
+                Username*
+              </label>
+              <input class="w-full rounded-lg border border-[#38bdf8] bg-[#0f1723] text-[9px] text-[#d1d5db] px-3 py-2 focus:outline-none focus:ring-1 focus:ring-[#38bdf8]" id="username" placeholder="Enter your username" type="text"/>
+            </div>
+            <div>
+              <label class="block text-[8px] font-semibold mb-1 text-gray-400" for="comment">
+                Write a comment*
+              </label>
+              <div class="relative">
+                <textarea class="w-full rounded-lg border border-[#38bdf8] bg-[#0f1723] text-[9px] text-[#d1d5db] px-3 py-2 resize-none focus:outline-none focus:ring-1 focus:ring-[#38bdf8]" id="comment-text" placeholder="Share your thoughts..." rows="2"></textarea>
+                <button aria-label="Send comment" class="absolute right-2 bottom-2 text-[#38bdf8] hover:text-[#0ea5e9] transition" id="submit-comment" type="submit">
+                  <i class="fas fa-paper-plane text-[12px]"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+   </section>
+  </main>
+  
+
+  <div id="host-apps-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title">
+          <i class="fas fa-download"></i> Download Host APK
+        </div>
+        <button class="modal-close" id="close-modal">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="app-list">
+        <a href="https://sfile.mobi/8XuJpKEqL6W" target="_blank" class="app-item">
+          <img src="https://play-lh.googleusercontent.com/-3C_GP8rFSyU84jrnhrn4O5mPiqPj3XuyNhGh5L8z-G5Wk8snKtYtmZ7R0sCxsmXKGzL=w600-h300-pc0xffffff-pd" alt="Virtual Host" class="app-icon">
+          <div class="app-info">
+            <div class="app-name">Virtual Host</div>
+            <div class="app-desc">Rekomendasi Untuk Main GTPS 😎</div>
+          </div>
+        </a>
+        <a href="https://sfile.mobi/2wAFRSHHTOQ" target="_blank" class="app-item">
+          <img src="https://images.sftcdn.net/images/t_app-icon-m/p/0aef4e63-c487-4875-b103-bf30528aaf72/383420525/no-root-hosts-go-logo" alt="Host Go" class="app-icon">
+          <div class="app-info">
+            <div class="app-name">Hosts GO</div>
+            <div class="app-desc">Cocok Juga Untuk Main GTPS 😎</div>
+          </div>
+        </a>
+        <a href="https://sfile.mobi/1zuFlBKK6Qw" target="_blank" class="app-item">
+          <img src="https://raw.githubusercontent.com/krlvm/PowerTunnel/master/.github/images/logo.png" alt="Power Tunnel" class="app-icon">
+          <div class="app-info">
+            <div class="app-name">Power Tunnel</div>
+            <div class="app-desc">Rekomendasi Untuk Main GTPS 😎</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div id="register-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title">
+          <i class="fas fa-user-plus"></i> Komunitas Vercity
+        </div>
+        <button class="modal-close" id="close-register-modal">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="p-5">
+        <div class="mb-5 text-center">
+          <p class="text-[13px] text-gray-300 mb-3">Bergabunglah dengan komunitas Vercity melalui sosial media berikut:</p>
+        </div>
+        
+        <div class="space-y-4">
+          <a href="https://chat.whatsapp.com/IUyX4WyHmBOA2mEdC6TFYG" target="_blank" class="flex items-center p-3 bg-[#25D366] bg-opacity-20 rounded-lg hover:bg-opacity-30 transition-all">
+            <div class="w-10 h-10 rounded-full bg-[#25D366] flex items-center justify-center mr-3 flex-shrink-0">
+              <i class="fab fa-whatsapp text-white text-xl"></i>
+            </div>
+            <div>
+              <div class="font-semibold text-[12px] text-[#d1d5db]">WhatsApp Group</div>
+            </div>
+            <i class="fas fa-external-link-alt ml-auto text-[#25D366] text-xs"></i>
+          </a>
+          
+          <a href="https://discord.gg/Z2kybabDg4" target="_blank" class="flex items-center p-3 bg-[#5865F2] bg-opacity-20 rounded-lg hover:bg-opacity-30 transition-all">
+            <div class="w-10 h-10 rounded-full bg-[#5865F2] flex items-center justify-center mr-3 flex-shrink-0">
+              <i class="fab fa-discord text-white text-xl"></i>
+            </div>
+            <div>
+              <div class="font-semibold text-[12px] text-[#d1d5db]">Discord</div>
+            </div>
+            <i class="fas fa-external-link-alt ml-auto text-[#5865F2] text-xs"></i>
+          </a>
+          
+          <a href="https://tiktok.com/@orenni" target="_blank" class="flex items-center p-3 bg-[#000000] bg-opacity-40 rounded-lg hover:bg-opacity-50 transition-all">
+            <div class="w-10 h-10 rounded-full bg-black flex items-center justify-center mr-3 flex-shrink-0">
+              <i class="fab fa-tiktok text-white text-xl"></i>
+            </div>
+            <div>
+              <div class="font-semibold text-[12px] text-[#d1d5db]">TikTok Owner</div>
+            </div>
+            <i class="fas fa-external-link-alt ml-auto text-white text-xs"></i>
+          </a>
+          
+          <a href="https://wa.me/6281527641306" target="_blank" class="flex items-center p-3 bg-[#25D366] bg-opacity-20 rounded-lg hover:bg-opacity-30 transition-all">
+            <div class="w-10 h-10 rounded-full bg-[#25D366] flex items-center justify-center mr-3 flex-shrink-0">
+              <i class="fab fa-whatsapp text-white text-xl"></i>
+            </div>
+            <div>
+              <div class="font-semibold text-[12px] text-[#d1d5db]">WhatsApp Owner</div>
+            </div>
+            <i class="fas fa-external-link-alt ml-auto text-[#25D366] text-xs"></i>
+          </a>
+          
+          <button id="show-price-list" class="flex items-center p-3 bg-[#FFD700] bg-opacity-20 rounded-lg hover:bg-opacity-30 transition-all w-full">
+            <div class="w-10 h-10 rounded-full bg-[#FFD700] flex items-center justify-center mr-3 flex-shrink-0">
+              <i class="fas fa-coins text-white text-xl"></i>
+            </div>
+            <div>
+              <div class="font-semibold text-[12px] text-[#d1d5db]">List Harga Role</div>
+            </div>
+            <i class="fas fa-chevron-right ml-auto text-[#FFD700] text-xs"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+ 
+  <div id="price-list-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title">
+          <i class="fas fa-tag"></i> Daftar Harga
+        </div>
+        <button class="modal-close" id="close-price-modal">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="p-5">
+        <div class="mb-5">
+          <h3 class="text-[14px] text-[#38bdf8] font-semibold mb-3">Role Price</h3>
+          <div class="space-y-2">
+            <div class="flex justify-between items-center p-2 rounded-md bg-[#1a2432] bg-opacity-50">
+              <span class="text-[11px] text-gray-300">Staff</span>
+              <span class="text-[11px] font-semibold text-white">200K</span>
+            </div>
+            <div class="flex justify-between items-center p-2 rounded-md bg-[#1a2432] bg-opacity-50">
+              <span class="text-[11px] text-gray-300">Developer</span>
+              <span class="text-[11px] font-semibold text-white">100K</span>
+            </div>
+            <div class="flex justify-between items-center p-2 rounded-md bg-[#1a2432] bg-opacity-50">
+              <span class="text-[11px] text-gray-300">Administrator</span>
+              <span class="text-[11px] font-semibold text-white">70K</span>
+            </div>
+            <div class="flex justify-between items-center p-2 rounded-md bg-[#1a2432] bg-opacity-50">
+              <span class="text-[11px] text-gray-300">Cheat Role</span>
+              <span class="text-[11px] font-semibold text-white">15K</span>
+            </div>
+            <div class="flex justify-between items-center p-2 rounded-md bg-[#1a2432] bg-opacity-50">
+              <span class="text-[11px] text-gray-300">VIP</span>
+              <span class="text-[11px] font-semibold text-green-400">Free</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="mb-5">
+          <h3 class="text-[14px] text-[#38bdf8] font-semibold mb-3">Title Price</h3>
+          <div class="space-y-2">
+            <div class="flex justify-between items-center p-2 rounded-md bg-[#1a2432] bg-opacity-50">
+              <span class="text-[11px] text-gray-300">Title Of Legend + SUPP</span>
+              <span class="text-[11px] font-semibold text-white">20K</span>
+            </div>
+            <div class="flex justify-between items-center p-2 rounded-md bg-[#1a2432] bg-opacity-50">
+              <span class="text-[11px] text-gray-300">Dr Title</span>
+              <span class="text-[11px] font-semibold text-white">15K</span>
+            </div>
+            <div class="flex justify-between items-center p-2 rounded-md bg-[#1a2432] bg-opacity-50">
+              <span class="text-[11px] text-gray-300">Grow4Good</span>
+              <span class="text-[11px] font-semibold text-white">10K</span>
+            </div>
+          </div>
+        </div>
+        
+        <a href="https://wa.me/6281527641306" target="_blank" class="bg-gradient-to-r from-green-600 to-green-400 hover:from-green-500 hover:to-green-300 text-[11px] font-semibold px-5 py-3 rounded-lg flex items-center justify-center transition-shadow shadow-md hover:shadow-lg text-white glow w-full">
+          <i class="fab fa-whatsapp mr-2 text-[16px]"></i>
+          <span>Owner To Buy</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <script src="vercity.js"></script>
+ </body>
+</html>
