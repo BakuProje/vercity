@@ -34,10 +34,9 @@ body {
    backface-visibility: hidden;
  }
 
-/* Media query untuk perangkat mobile */
+
 @media (max-width: 768px) {
   #video-background {
-    /* Menurunkan resolusi pada perangkat mobile untuk kinerja lebih baik */
     transform: scale(1.01) translateZ(0);
     transition: transform 0.1s ease;
   }
@@ -152,6 +151,20 @@ body {
    z-index: 100;
    cursor: pointer;
  }
+
+
+.sound-toggle.active {
+  animation: pulse-glow 2s infinite alternate;
+}
+
+@keyframes pulse-glow {
+  0% {
+    box-shadow: 0 0 5px rgba(56, 189, 248, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.8), 0 0 25px rgba(56, 189, 248, 0.5);
+  }
+}
 
  @keyframes colorShift {
    0% {

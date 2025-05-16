@@ -1,39 +1,44 @@
 const tabs = document.querySelectorAll('button[data-tab]');
 const tabContent = document.getElementById('tab-content');
-
-// Variable untuk membuat video background lebih efisien
 let videoIsPlaying = true;
 const videoElement = document.getElementById('video-background');
-
-// Preload video untuk kinerja lebih baik
+const bgMusic = document.getElementById('background-music');
+let isMusicPlaying = false;
 videoElement.preload = "auto";
-
-// Memastikan video tetap berjalan bahkan jika halaman tidak aktif
 document.addEventListener("visibilitychange", function() {
   if (document.hidden) {
-    // Halaman tidak aktif, tapi video tetap berjalan
     videoElement.play().catch(e => console.log("Auto-play prevented:", e));
+  } else {
+    if (videoIsPlaying && videoElement.paused) {
+      videoElement.play().catch(e => console.log("Auto-play prevented:", e));
+    }
+    if (isMusicPlaying && bgMusic.paused && !isMuted) {
+      bgMusic.play().catch(e => console.log("Gagal memutar musik saat kembali ke tab:", e));
+    }
   }
 });
-
-// Mencegah pengalihan fokus dari video saat scrolling atau interaksi dengan popup
 window.addEventListener('scroll', function() {
   if (videoIsPlaying && videoElement.paused) {
     videoElement.play().catch(e => console.log("Auto-play prevented:", e));
   }
 });
-
-// Memastikan video tetap berjalan saat modal terbuka
 const ensureVideoPlaying = () => {
   if (videoIsPlaying && videoElement.paused) {
     videoElement.play().catch(e => console.log("Auto-play prevented:", e));
   }
 };
+const ensureMediaPlaying = () => {
+  if (videoIsPlaying && videoElement.paused) {
+    videoElement.play().catch(e => console.log("Auto-play prevented:", e));
+  }
+  if (isMusicPlaying && bgMusic.paused && !isMuted) {
+    bgMusic.play().catch(e => console.log("Gagal memutar musik:", e));
+  }
+};
 
-// Mendaftarkan event listener untuk semua interaksi modal
 document.addEventListener('click', function(e) {
-  // Tunggu sedikit untuk memastikan video tetap berjalan setelah interaksi
-  setTimeout(ensureVideoPlaying, 100);
+  setTimeout(ensureMediaPlaying, 100);
+  playBackgroundMusic();
 });
 
 function createSnowflake() {
@@ -119,42 +124,29 @@ const videoSources = [
 
 let currentVideoIndex = 0;
 
-// Menggunakan IntersectionObserver untuk melihat kapan video berada pada tampilan
+
 const videoObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
-    // Memastikan video tetap berjalan meskipun tidak sepenuhnya terlihat
+
     if (videoIsPlaying && videoElement.paused) {
       videoElement.play().catch(e => console.log("Failed to play video:", e));
     }
   });
 }, {
-  threshold: [0, 0.1, 0.2, 0.5] // Mengamati beberapa tingkat visibilitas
+  threshold: [0, 0.1, 0.2, 0.5] 
 });
-
-// Mulai mengamati video
 videoObserver.observe(videoElement);
-
-// Optimalkan pengalihan video
 function changeVideo() {
 currentVideoIndex = (currentVideoIndex + 1) % videoSources.length;
-// Simpan URL video saat ini
 const currentSrc = videoSources[currentVideoIndex];
-
-// Membuat element video baru untuk preload
 const tempVideo = document.createElement('video');
 tempVideo.style.display = 'none';
 tempVideo.src = currentSrc;
 tempVideo.load();
-
-// Menunggu hingga video baru dimuat sebelum mengganti video utama
 tempVideo.addEventListener('loadeddata', () => {
   videoElement.src = currentSrc;
   videoElement.load();
-  
-  // Pastikan tetap memutar setelah memuat video baru
   videoElement.play().catch(e => console.log("Failed to play video after change:", e));
-  
-  // Hapus video temporary
   document.body.removeChild(tempVideo);
 });
 
@@ -165,13 +157,21 @@ setInterval(changeVideo, 30000);
 soundToggle.addEventListener('click', () => {
 isMuted = !isMuted;
 videoElement.muted = isMuted;
-
 if (isMuted) {
  soundIcon.classList.remove('fa-volume-up');
  soundIcon.classList.add('fa-volume-mute');
+ bgMusic.pause();
+ document.querySelector('.sound-toggle').classList.remove('active');
 } else {
  soundIcon.classList.remove('fa-volume-mute');
  soundIcon.classList.add('fa-volume-up');
+ if (isMusicPlaying) {
+   bgMusic.play().catch(e => console.log("Gagal memutar musik setelah unmute:", e));
+
+   document.querySelector('.sound-toggle').classList.add('active');
+ } else {
+   playBackgroundMusic();
+ }
 }
 });
 
@@ -440,6 +440,14 @@ tabContent.innerHTML = contents['android'];
 const commentForm = document.getElementById('comment-form');
 const commentsContainer = document.getElementById('comments-container');
 const noCommentsMessage = document.getElementById('no-comments');
+setTimeout(function() {
+  document.body.focus();
+  document.body.addEventListener('touchstart', function onFirstTouch() {
+    playBackgroundMusic();
+    document.body.removeEventListener('touchstart', onFirstTouch);
+  }, {once: true});
+}, 1000);
+
 if (commentsContainer.children.length > 0) {
  noCommentsMessage.classList.add('hidden');
 } else {
@@ -504,20 +512,14 @@ if (commentsPopup.classList.contains('hidden')) {
 } else {
  buttonText.textContent = 'Tutup Komentar';
 }
-
-// Memastikan video tetap berjalan
-setTimeout(ensureVideoPlaying, 100);
+setTimeout(ensureMediaPlaying, 100);
 });
-
 document.getElementById('close-comments').addEventListener('click', () => {
 const commentsPopup = document.getElementById('comments-popup');
 const buttonText = document.querySelector('#toggle-comments span');
-
 commentsPopup.classList.add('hidden');
 buttonText.textContent = 'Lihat Komentar';
-
-// Memastikan video tetap berjalan
-setTimeout(ensureVideoPlaying, 100);
+setTimeout(ensureMediaPlaying, 100);
 });
 
 const downloadHostApkBtn = document.getElementById('download-host-apk');
@@ -528,8 +530,7 @@ downloadHostApkBtn.addEventListener('click', () => {
 hostAppsModal.style.display = 'block';
 setTimeout(() => {
  hostAppsModal.classList.add('show');
- // Memastikan video tetap berjalan
- ensureVideoPlaying();
+ ensureMediaPlaying();
 }, 10);
 });
 
@@ -537,8 +538,7 @@ closeModalBtn.addEventListener('click', () => {
 hostAppsModal.classList.remove('show');
 setTimeout(() => {
  hostAppsModal.style.display = 'none';
- // Memastikan video tetap berjalan
- ensureVideoPlaying();
+ ensureMediaPlaying();
 }, 300);
 });
 
@@ -560,8 +560,7 @@ registerButton.addEventListener('click', () => {
 registerModal.style.display = 'block';
 setTimeout(() => {
  registerModal.classList.add('show');
- // Memastikan video tetap berjalan
- ensureVideoPlaying();
+ ensureMediaPlaying();
 }, 10);
 });
 
@@ -569,8 +568,7 @@ closeRegisterBtn.addEventListener('click', () => {
 registerModal.classList.remove('show');
 setTimeout(() => {
  registerModal.style.display = 'none';
- // Memastikan video tetap berjalan
- ensureVideoPlaying();
+ ensureMediaPlaying();
 }, 300);
 });
 
@@ -579,8 +577,7 @@ if (event.target === registerModal) {
  registerModal.classList.remove('show');
  setTimeout(() => {
    registerModal.style.display = 'none';
-   // Memastikan video tetap berjalan
-   ensureVideoPlaying();
+   ensureMediaPlaying();
  }, 300);
 }
 });
@@ -593,8 +590,7 @@ priceListBtn.addEventListener('click', () => {
 priceListModal.style.display = 'block';
 setTimeout(() => {
  priceListModal.classList.add('show');
- // Memastikan video tetap berjalan
- ensureVideoPlaying();
+ ensureMediaPlaying();
 }, 10);
 });
 
@@ -602,8 +598,7 @@ closePriceModalBtn.addEventListener('click', () => {
 priceListModal.classList.remove('show');
 setTimeout(() => {
  priceListModal.style.display = 'none';
- // Memastikan video tetap berjalan
- ensureVideoPlaying();
+ ensureMediaPlaying();
 }, 300);
 });
 
@@ -612,27 +607,86 @@ if (event.target === priceListModal) {
  priceListModal.classList.remove('show');
  setTimeout(() => {
    priceListModal.style.display = 'none';
-   // Memastikan video tetap berjalan
-   ensureVideoPlaying();
+   ensureMediaPlaying();
  }, 300);
 }
 });
-
-// Fungsi untuk mengoptimalkan video pada perangkat mobile
 function optimizeVideoForMobile() {
   const isMobile = window.innerWidth <= 768;
   
   if (isMobile) {
-    // Mengurangi kualitas video pada perangkat mobile
     videoElement.setAttribute('playsinline', '');
     videoElement.muted = true;
     videoElement.setAttribute('disablePictureInPicture', '');
     videoElement.setAttribute('disableRemotePlayback', '');
+    bgMusic.preload = "auto";
+    if ('mediaSession' in navigator) {
+      navigator.mediaSession.setActionHandler('play', function() {
+        playBackgroundMusic();
+      });
+      navigator.mediaSession.setActionHandler('pause', function() {
+        if (!isMuted) {
+          bgMusic.pause();
+          isMusicPlaying = false;
+        }
+      });
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title: 'Vercity Background Music',
+        artist: 'Vercity',
+        album: 'Vercity GTPS',
+        artwork: [
+          { src: 'img/Vercity.png', sizes: '96x96', type: 'image/png' },
+          { src: 'img/Vercity.png', sizes: '128x128', type: 'image/png' },
+          { src: 'img/Vercity.png', sizes: '192x192', type: 'image/png' },
+          { src: 'img/Vercity.png', sizes: '256x256', type: 'image/png' },
+          { src: 'img/Vercity.png', sizes: '384x384', type: 'image/png' },
+          { src: 'img/Vercity.png', sizes: '512x512', type: 'image/png' },
+        ]
+      });
+    }
+  }
+}
+window.addEventListener('load', optimizeVideoForMobile);
+window.addEventListener('resize', optimizeVideoForMobile);
+
+function playBackgroundMusic() {
+  if (!isMusicPlaying) {
+    bgMusic.play().then(() => {
+      isMusicPlaying = true;
+
+      if (!isMuted) {
+        soundIcon.classList.remove('fa-volume-mute');
+        soundIcon.classList.add('fa-volume-up');
+
+        document.querySelector('.sound-toggle').classList.add('active');
+      }
+    }).catch(e => {
+      console.log("Gagal memutar musik:", e);
+
+    });
   }
 }
 
-// Panggil fungsi optimasi saat halaman dimuat
-window.addEventListener('load', optimizeVideoForMobile);
 
-// Panggil fungsi optimasi saat ukuran layar berubah
-window.addEventListener('resize', optimizeVideoForMobile);
+window.addEventListener('scroll', function() {
+  if (isMusicPlaying && bgMusic.paused) {
+    bgMusic.play().catch(e => console.log("Gagal memutar ulang musik:", e));
+  }
+});
+
+
+window.addEventListener('blur', function() {
+  setTimeout(function() {
+    if (isMusicPlaying && bgMusic.paused && !isMuted) {
+      bgMusic.play().catch(e => console.log("Gagal memutar musik saat window blur:", e));
+    }
+  }, 300);
+});
+
+window.addEventListener('focus', function() {
+  setTimeout(function() {
+    if (isMusicPlaying && bgMusic.paused && !isMuted) {
+      bgMusic.play().catch(e => console.log("Gagal memutar musik saat window focus:", e));
+    }
+  }, 300);
+});
