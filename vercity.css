@@ -3,6 +3,7 @@ body {
    transition: background 0.3s ease;
    position: relative;
    overflow-x: hidden;
+   overscroll-behavior: none;
  }
  
  body::before {
@@ -28,7 +29,19 @@ body {
    height: 100%;
    object-fit: cover;
    z-index: -2;
+   will-change: transform;
+   transform: translateZ(0);
+   backface-visibility: hidden;
  }
+
+/* Media query untuk perangkat mobile */
+@media (max-width: 768px) {
+  #video-background {
+    /* Menurunkan resolusi pada perangkat mobile untuk kinerja lebih baik */
+    transform: scale(1.01) translateZ(0);
+    transition: transform 0.1s ease;
+  }
+}
 
  .snowflake {
    position: absolute;
