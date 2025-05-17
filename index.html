@@ -3,13 +3,14 @@
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1" name="viewport"/>
   <title>
-   VERCITYBETA
+   VERCITY BETA
   </title>
   <script src="https://cdn.tailwindcss.com">
   </script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
  <link rel="stylesheet" href="vercity.css">
+ <link rel="icon" type="image/png" href="img/Vercity.png">
  </head>
  <body class="bg-[#121217] text-[#d1d5db] min-h-screen flex justify-center px-4" id="page-body">
   <video id="video-background" autoplay muted loop playsinline preload="auto" disablePictureInPicture>
@@ -398,5 +399,16 @@
     </div>
   </div>
   <script src="vercity.js"></script>
+  <script>
+   document.getElementById('username').addEventListener('input', ensureMediaPlaying);
+   document.getElementById('comment-text').addEventListener('input', ensureMediaPlaying);
+   window.addEventListener('scroll', function() {
+     ensureMediaPlaying();
+   });
+   document.addEventListener('click', function(e) {
+     setTimeout(ensureMediaPlaying, 100);
+     if (!isMuted) playBackgroundMusic();
+   });
+  </script>
  </body>
 </html>

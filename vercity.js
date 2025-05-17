@@ -4,6 +4,7 @@ let videoIsPlaying = true;
 const videoElement = document.getElementById('video-background');
 const bgMusic = document.getElementById('background-music');
 let isMusicPlaying = false;
+let hasAutoUnmuted = false;
 videoElement.preload = "auto";
 document.addEventListener("visibilitychange", function() {
   if (document.hidden) {
@@ -37,8 +38,18 @@ const ensureMediaPlaying = () => {
 };
 
 document.addEventListener('click', function(e) {
+  if (!hasAutoUnmuted) {
+    if (isMuted) {
+      isMuted = false;
+      videoElement.muted = false;
+      soundIcon.classList.remove('fa-volume-mute');
+      soundIcon.classList.add('fa-volume-up');
+      document.querySelector('.sound-toggle').classList.add('active');
+    }
+    playBackgroundMusic();
+    hasAutoUnmuted = true;
+  }
   setTimeout(ensureMediaPlaying, 100);
-  playBackgroundMusic();
 });
 
 function createSnowflake() {
