@@ -127,8 +127,8 @@ let isMuted = true;
 
 
 const videoSources = [
-'img/video1.mp4',
 'img/video2.mp4',
+'img/video1.mp4',
 'img/video3.mp4',
 'img/video6.mp4'
 ];
@@ -196,7 +196,7 @@ android: `<div class="bg-blue-900 rounded p-2 mb-3">
 </div>
 <div class="bg-blue-800 rounded p-2 mb-2 relative">
  <div class="text-white text-[9px] font-mono" id="android-host-url">
-   https://gtpshost.com/VercityBeta.txt
+   https://gtpshost.com/Vercity.txt
  </div>
  <button class="absolute right-1 top-1 bg-green-600 text-white rounded p-1 text-[8px]" id="copy-android-url">
    <i class="fas fa-copy"></i>
@@ -218,7 +218,7 @@ ios: `<div class="bg-blue-900 rounded p-2 mb-3">
 </div>
 <div class="bg-blue-800 rounded p-2 mb-2 relative">
  <div class="text-white text-[9px] font-mono" id="ios-host-url">
-   https://ios.gtpshost.com/VercityBeta
+   https://ios.gtpshost.com/Vercity
  </div>
  <button class="absolute right-1 top-1 bg-green-600 text-white rounded p-1 text-[8px]" id="copy-ios-url">
    <i class="fas fa-copy"></i>
@@ -241,11 +241,11 @@ windows: `<div class="bg-blue-900 rounded p-2 mb-3">
 </div>
 <div class="bg-blue-800 rounded p-2 mb-2 relative">
  <div class="text-white text-[9px]" id="windows-host-content">
-   206.189.91.118 growtopia1.com<br>
-   206.189.91.118 growtopia2.com<br>
-   206.189.91.118 www.growtopia1.com<br>
-   206.189.91.118 www.growtopia2.com<br>
-   206.189.91.118 RvLnd.here
+   159.223.55.200 growtopia1.com<br>
+   159.223.55.200 growtopia2.com<br>
+   159.223.55.200 www.growtopia1.com<br>
+   159.223.55.200 www.growtopia2.com<br>
+   159.223.55.200 RvLnd.here
  </div>
  <button class="absolute right-1 top-1 bg-green-600 text-white rounded p-1 text-[8px]" id="copy-windows-hosts">
    <i class="fas fa-copy"></i>
@@ -266,11 +266,11 @@ mac: `<div class="bg-blue-900 rounded p-2 mb-3">
 </div>
 <div class="bg-blue-800 rounded p-2 mb-2 relative">
  <div class="text-white text-[9px]" id="mac-host-content">
-   206.189.91.118 growtopia1.com<br>
-   206.189.91.118 growtopia2.com<br>
-   206.189.91.118 www.growtopia1.com<br>
-   206.189.91.118 www.growtopia2.com<br>
-   206.189.91.118 RvLnd.here
+   159.223.55.200 growtopia1.com<br>
+   159.223.55.200 growtopia2.com<br>
+   159.223.55.200 www.growtopia1.com<br>
+   159.223.55.200 www.growtopia2.com<br>
+   159.223.55.200 RvLnd.here
  </div>
  <button class="absolute right-1 top-1 bg-green-600 text-white rounded p-1 text-[8px]" id="copy-mac-hosts">
    <i class="fas fa-copy"></i>
@@ -319,16 +319,16 @@ tab.addEventListener('click', () => {
 
 
 document.getElementById('download-host').addEventListener('click', () => {
-const content = `206.189.91.118 growtopia1.com
-206.189.91.118 growtopia2.com
-206.189.91.118 www.growtopia1.com
-206.189.91.118 www.growtopia2.com
-206.189.91.118 RVLnd.here`;
+const content = `159.223.55.200 growtopia1.com
+159.223.55.200 growtopia2.com
+159.223.55.200 www.growtopia1.com
+159.223.55.200 www.growtopia2.com
+159.223.55.200 RVLnd.here`;
 const blob = new Blob([content], { type: 'text/plain' });
 const url = URL.createObjectURL(blob);
 const a = document.createElement('a');
 a.href = url;
-a.download = 'VercityBeta.txt';
+a.download = 'Vercity.txt';
 document.body.appendChild(a);
 a.click();
 setTimeout(() => {
@@ -352,19 +352,19 @@ navigator.clipboard.writeText(text).then(() => {
 }
 
 document.getElementById('copy-powertunnel').addEventListener('click', (e) => {
-copyText('https://gtpshost.com/VercityBeta.txt', 'powertunnel-check', e.currentTarget);
+copyText('https://gtpshost.com/Vercity.txt', 'powertunnel-check', e.currentTarget);
 });
 
 document.getElementById('copy-ios').addEventListener('click', (e) => {
-copyText('https://ios.gtpshost.com/VercityBeta', 'ios-check', e.currentTarget);
+copyText('https://ios.gtpshost.com/Vercity', 'ios-check', e.currentTarget);
 });
 
 document.getElementById('copy-ip-list').addEventListener('click', () => {
-const content = `206.189.91.118 growtopia1.com
-206.189.91.118 growtopia2.com
-206.189.91.118 www.growtopia1.com
-206.189.91.118 www.growtopia2.com
-206.189.91.118 RVLnd.here`;
+const content = `159.223.55.200 growtopia1.com
+159.223.55.200 growtopia2.com
+159.223.55.200 www.growtopia1.com
+159.223.55.200 www.growtopia2.com
+159.223.55.200 RVLnd.here`;
 
 navigator.clipboard.writeText(content).then(() => {
  const button = document.getElementById('copy-ip-list');
