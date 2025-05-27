@@ -196,7 +196,7 @@ android: `<div class="bg-blue-900 rounded p-2 mb-3">
 </div>
 <div class="bg-blue-800 rounded p-2 mb-2 relative">
  <div class="text-white text-[9px] font-mono" id="android-host-url">
-   https://gtpshost.com/Vercity.txt
+   https://vercityps.netlify.app/VercityUP.txt
  </div>
  <button class="absolute right-1 top-1 bg-green-600 text-white rounded p-1 text-[8px]" id="copy-android-url">
    <i class="fas fa-copy"></i>
@@ -218,7 +218,7 @@ ios: `<div class="bg-blue-900 rounded p-2 mb-3">
 </div>
 <div class="bg-blue-800 rounded p-2 mb-2 relative">
  <div class="text-white text-[9px] font-mono" id="ios-host-url">
-   https://ios.gtpshost.com/Vercity
+   https://ios.gtpshost.com/VercityUP
  </div>
  <button class="absolute right-1 top-1 bg-green-600 text-white rounded p-1 text-[8px]" id="copy-ios-url">
    <i class="fas fa-copy"></i>
@@ -352,11 +352,11 @@ navigator.clipboard.writeText(text).then(() => {
 }
 
 document.getElementById('copy-powertunnel').addEventListener('click', (e) => {
-copyText('https://gtpshost.com/Vercity.txt', 'powertunnel-check', e.currentTarget);
+copyText('https://vercityps.netlify.app/VercityUP.txt', 'powertunnel-check', e.currentTarget);
 });
 
 document.getElementById('copy-ios').addEventListener('click', (e) => {
-copyText('https://ios.gtpshost.com/Vercity', 'ios-check', e.currentTarget);
+copyText('https://ios.gtpshost.com/VercityUP', 'ios-check', e.currentTarget);
 });
 
 document.getElementById('copy-ip-list').addEventListener('click', () => {
